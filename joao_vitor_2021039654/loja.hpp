@@ -29,4 +29,7 @@ public:
     void print_N(int N); // Imprime o valor de N
     void print_R(int R); // Imprime o valor de R
     void print_P(int P); // Imprime o valor de P
+
+    void lis(); // Longest Increasing Subsequence
+    void lds(); // Longest Increasing Subsequence
 };
