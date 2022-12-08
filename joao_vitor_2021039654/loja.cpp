@@ -15,6 +15,8 @@ void Loja::set_Rolos(int P)
     // se ele for menor que o ultimo valor do vetor insere no final
     //  caso nao seja
     //  nao insere
+
+    int size = rolos.size() - 1;
     if (rolos.size() == 0)
     {
         rolos.push_back(P);
@@ -23,18 +25,11 @@ void Loja::set_Rolos(int P)
     {
         rolos.insert(rolos.begin(), P);
     }
-    else // if (P < rolos[rolos.size() - 1])
+    else
     {
         rolos.push_back(P);
     }
 
-    // if (rolos.size() == 0)
-    // {
-    //     rolos.push_back(P);
-    // }
-    // else
-    // {
-    int size = rolos.size() - 1;
     if (P > rolos[0])
     {
         // printf("p: %d, v[size]: %d, i: %d\n", p, v[size], i);

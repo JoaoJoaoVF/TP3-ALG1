@@ -34,9 +34,9 @@ int main()
       minha_loja.set_Rolos(P);
     }
 
-    //  minha_loja.print_Rolos();
+    minha_loja.print_Rolos();
 
-    // cout << endl;
+    cout << endl;
 
     minha_loja.lds();
 
@@ -44,7 +44,7 @@ int main()
 
     minha_loja.rolos.clear();
   }
-  cout << endl;
+  // cout << endl;
 
   return (0);
 }
