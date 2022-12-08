@@ -6,26 +6,52 @@ Loja::Loja()
 
 void Loja::set_Rolos(int P)
 {
-    //     rolos.insert(rolos.begin(), P);
-    // }
+    // 1) coloca-lo na prateleira pelo lado direito e empurra-lo ate encostar nos rolos ja existentes
+    // 2) coloca-lo na prateleira pelo lado esquerdo e empurr´a-lo at´e encostar nos rolos j´a existentes,
+    // 3) simplesmente n˜ao coloc´a-lo na prateleira.
 
-    // Se não
-    // Insere o elemento na posição do vetor
-    if (rolos.empty())
+    // isere o rolo no inicio do vetor se o valor dele é maior que o priemir
+    //  caso nao seja
+    // se ele for menor que o ultimo valor do vetor insere no final
+    //  caso nao seja
+    //  nao insere
+    if (rolos.size() == 0)
     {
         rolos.push_back(P);
     }
+    else if (P > rolos[0])
+    {
+        rolos.insert(rolos.begin(), P);
+    }
+    else // if (P < rolos[rolos.size() - 1])
+    {
+        rolos.push_back(P);
+    }
+
+    // if (rolos.size() == 0)
+    // {
+    //     rolos.push_back(P);
+    // }
+    // else
+    // {
+    int size = rolos.size() - 1;
+    if (P > rolos[0])
+    {
+        // printf("p: %d, v[size]: %d, i: %d\n", p, v[size], i);
+        rolos.insert(rolos.begin(), 1, P);
+    }
+    else if (P < rolos[size] && P < rolos[0])
+        rolos.push_back(P);
     else
     {
-        if (P > rolos[0])
-        {
-            rolos.insert(rolos.begin(), P);
-        }
+        int diff_sup = abs(P - rolos[0]);
+        int diff_inf = abs(P - rolos[size]);
+        if (diff_sup < rolos[size])
+            rolos.insert(rolos.begin(), 1, P);
         else
-        {
             rolos.push_back(P);
-        }
     }
+    // }
 }
 
 void Loja::print_Rolos()
@@ -104,10 +130,12 @@ void Loja::lds()
             {
                 // add 1 to the lds
                 lds[i] = lds[j] + 1;
+                // cout << lds[i] << endl;
             }
+            // cout << lds[i] << endl;
         }
     }
-
+    // cout << endl;
     // find the maximum value of the lds
     int maior = lds[0];
     // iterate over the lds vector
@@ -123,5 +151,3 @@ void Loja::lds()
 
     cout << maior;
 }
-// adding the element in the beginning of the vector
-//  rolos.insert(rolos.begin(), 0);
