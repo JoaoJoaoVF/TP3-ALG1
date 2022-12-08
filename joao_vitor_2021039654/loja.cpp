@@ -10,29 +10,15 @@ void Loja::set_Rolos(int P)
     // 2) coloca-lo na prateleira pelo lado esquerdo e empurr´a-lo at´e encostar nos rolos j´a existentes,
     // 3) simplesmente n˜ao coloc´a-lo na prateleira.
 
-    // isere o rolo no inicio do vetor se o valor dele é maior que o priemir
-    //  caso nao seja
-    // se ele for menor que o ultimo valor do vetor insere no final
-    //  caso nao seja
-    //  nao insere
-
     int size = rolos.size() - 1;
+
+    vector<int> old_rolos = rolos;
     if (rolos.size() == 0)
     {
         rolos.push_back(P);
     }
     else if (P > rolos[0])
     {
-        rolos.insert(rolos.begin(), P);
-    }
-    else
-    {
-        rolos.push_back(P);
-    }
-
-    if (P > rolos[0])
-    {
-        // printf("p: %d, v[size]: %d, i: %d\n", p, v[size], i);
         rolos.insert(rolos.begin(), 1, P);
     }
     else if (P < rolos[size] && P < rolos[0])
@@ -46,6 +32,31 @@ void Loja::set_Rolos(int P)
         else
             rolos.push_back(P);
     }
+
+    // else if (P > rolos[0])
+    // {
+    //     rolos.insert(rolos.begin(), P);
+    // }
+    // else
+    // {
+    //     rolos.push_back(P);
+    // }
+
+    // if (P > rolos[0])
+    // {
+    //     // printf("p: %d, v[size]: %d, i: %d\n", p, v[size], i);
+    //     rolos.insert(rolos.begin(), 1, P);
+    // }
+    // else if (P < rolos[size] && P < rolos[0])
+    //     rolos.push_back(P);
+    // else
+    // {
+    //     int diff_sup = abs(P - rolos[0]);
+    //     int diff_inf = abs(P - rolos[size]);
+    //     if (diff_sup < rolos[size])
+    //         rolos.insert(rolos.begin(), 1, P);
+    //     else
+    //         rolos.push_back(P);
     // }
 }
 
