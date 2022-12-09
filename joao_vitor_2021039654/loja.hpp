@@ -32,4 +32,6 @@ public:
 
     void lis(); // Longest Increasing Subsequence
     void lds(); // Longest Increasing Subsequence
+    int test(int n);
+    int test2(int n);
 };

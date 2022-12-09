@@ -23,7 +23,6 @@ int main()
 
     /*Leitura do numero de rolos*/
     cin >> R;
-
     erroAssert(R >= 1, "É necessário pelo menos um rolo");
     erroAssert(R <= 20000, "A quantidade de rolos não pode ser maior que 20000");
 
@@ -33,14 +32,26 @@ int main()
 
       minha_loja.set_Rolos(P);
     }
+    // cout << minha_loja.rolos.size() << endl;
 
-    minha_loja.print_Rolos();
+    // minha_loja.print_Rolos();
 
-    cout << endl;
+    // cout << endl;
 
-    minha_loja.lds();
+    // minha_loja.lds();
+    // minha_loja.test(R);
 
-    cout << endl;
+    // multiplique o array de rolos por -1
+    // for (int i = 0; i < R; i++)
+    // {
+    //   minha_loja.rolos[i] = minha_loja.rolos[i] * -1;
+    // }
+    int resposta = minha_loja.test(R);
+
+    cout << resposta << endl;
+
+    // cout << minha_loja.test2(R) << endl;
+    // cout << "alg 2 " << minha_loja.test2(R) << endl;
 
     minha_loja.rolos.clear();
   }
