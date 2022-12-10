@@ -25,13 +25,7 @@ public:
 
     void set_Rolos(int P); // Insere os rolos no vector de rolos
 
-    void print_Rolos();  // Imprime os rolos
-    void print_N(int N); // Imprime o valor de N
-    void print_R(int R); // Imprime o valor de R
-    void print_P(int P); // Imprime o valor de P
+    void print_Rolos(); // Imprime os rolos
 
-    void lis(); // Longest Increasing Subsequence
-    int lds();  // Longest Increasing Subsequence
-    int test(int n);
-    int test2(int n);
+    int lds(); // Longest Decreasing Subsequence
 };

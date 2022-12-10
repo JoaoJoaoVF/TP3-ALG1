@@ -32,35 +32,15 @@ int main()
 
       minha_loja.set_Rolos(P);
     }
-    // cout << minha_loja.rolos.size() << endl;
 
     // minha_loja.print_Rolos();
 
-    // cout << "lds ";
-
     int resp = minha_loja.lds();
     cout << resp << endl;
-    // minha_loja.test(R);
 
-    // multiplique o array de rolos por -1
-    // for (int i = 0; i < R; i++)
-    // {
-    //   minha_loja.rolos[i] = minha_loja.rolos[i] * -1;
-    // }
-    /*    int resposta = minha_loja.test(R);
-
-    cout << resposta << endl;*/
-
-    // int resposta2 = minha_loja.test2(R);
-    // cout << "resposta2 " << resposta << endl;
-
-    // cout << minha_loja.test2(R) << endl;
-    // cout << "alg 2 " << minha_loja.test2(R) << endl;
-
-    // cout << endl;
     minha_loja.rolos.clear();
   }
-  // cout << endl;
+  cout << endl;
 
   return (0);
 }
