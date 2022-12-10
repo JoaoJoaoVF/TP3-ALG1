@@ -3,7 +3,53 @@
 Loja::Loja()
 {
 }
+// Binary search (note boundaries in the caller)
+int CeilIndex(std::vector<int> &v, int l, int r, int key)
+{
+    while (r - l > 1)
+    {
+        int m = l + (r - l) / 2;
+        if (v[m] >= key)
+            r = m;
+        else
+            l = m;
+    }
 
+    return r;
+}
+
+int LongestIncreasingSubsequenceLength(std::vector<int> &v)
+{
+    if (v.size() == 0)
+        return 0;
+
+    std::vector<int> tail(v.size(), 0);
+    int length = 1; // always points empty slot in tail
+
+    tail[0] = v[0];
+    for (size_t i = 1; i < v.size(); i++)
+    {
+
+        // new smallest value
+        if (v[i] < tail[0])
+            tail[0] = v[i];
+
+        // v[i] extends largest subsequence
+        else if (v[i] < tail[length - 1])
+            tail[length++] = v[i];
+
+        // v[i] will become end candidate of an existing
+        // subsequence or Throw away larger elements in all
+        // LIS, to make room for upcoming greater elements
+        // than v[i] (and also, v[i] would have already
+        // appeared in one of LIS, identify the location
+        // and replace it)
+        else
+            tail[CeilIndex(tail, -1, length - 1, v[i])] = v[i];
+    }
+
+    return length;
+}
 void Loja::set_Rolos(int P)
 {
     // 1) coloca-lo na prateleira pelo lado direito e empurra-lo ate encostar nos rolos ja existentes
@@ -17,15 +63,15 @@ void Loja::set_Rolos(int P)
     else
     {
         vector<int> old_rolos = rolos;
-        int lds_old = lds();
+        int lds_old = LongestIncreasingSubsequenceLength(old_rolos);
 
         vector<int> begin_rolos = rolos;
         begin_rolos.insert(begin_rolos.begin(), 1, P);
-        int lds_begin = lds();
+        int lds_begin = LongestIncreasingSubsequenceLength(begin_rolos);
 
         vector<int> end_rolos = rolos;
         end_rolos.push_back(P);
-        int lds_end = lds();
+        int lds_end = LongestIncreasingSubsequenceLength(end_rolos);
 
         if (lds_old > lds_begin && lds_old > lds_end)
         {
@@ -89,12 +135,9 @@ int Loja::lds()
             {
                 // add 1 to the lds
                 lds[i] = lds[j] + 1;
-                // cout << lds[i] << endl;
             }
-            // cout << lds[i] << endl;
         }
     }
-    // cout << endl;
     // find the maximum value of the lds
     int maior = lds[0];
     // iterate over the lds vector
@@ -110,3 +153,5 @@ int Loja::lds()
 
     return maior;
 }
+
+// longest increasing subsequence using binare search
