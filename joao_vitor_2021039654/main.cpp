@@ -33,14 +33,17 @@ int main()
       minha_loja.set_Rolos(P);
     }
 
-    // minha_loja.print_Rolos();
+    // multiplicar todos os elemntos do vetor por -1
+    for (int i = 0; i < minha_loja.rolos.size(); i++)
+    {
+      minha_loja.rolos[i] = minha_loja.rolos[i] * -1;
+    }
 
     int resp = minha_loja.lds();
     cout << resp << endl;
 
     minha_loja.rolos.clear();
   }
-  cout << endl;
 
   return (0);
 }
