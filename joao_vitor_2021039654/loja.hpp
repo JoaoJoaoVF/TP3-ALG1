@@ -31,7 +31,7 @@ public:
     void print_P(int P); // Imprime o valor de P
 
     void lis(); // Longest Increasing Subsequence
-    void lds(); // Longest Increasing Subsequence
+    int lds();  // Longest Increasing Subsequence
     int test(int n);
     int test2(int n);
 };

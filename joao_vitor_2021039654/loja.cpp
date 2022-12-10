@@ -10,54 +10,91 @@ void Loja::set_Rolos(int P)
     // 2) coloca-lo na prateleira pelo lado esquerdo e empurr´a-lo at´e encostar nos rolos j´a existentes,
     // 3) simplesmente n˜ao coloc´a-lo na prateleira.
 
-    int size = rolos.size() - 1;
-
     // vector<int> old_rolos = rolos;
     if (rolos.size() == 0)
     {
         rolos.push_back(P);
+        // cout << "P: " << P << endl;
+        // print_Rolos();
     }
-    else if (P > rolos[0])
-    {
-        rolos.insert(rolos.begin(), 1, P);
-    }
-    else if (P < rolos[size] && P < rolos[0])
-        rolos.push_back(P);
-    else
-    {
-        int diff_sup = abs(P - rolos[0]);
-        int diff_inf = abs(P - rolos[size]);
-        if (diff_sup < rolos[size])
-            rolos.insert(rolos.begin(), 1, P);
-        else
-            rolos.push_back(P);
-    }
-    // if (P > rolos[0])
+    // else if (P > rolos[0])
     // {
-    //     rolos.insert(rolos.begin(), P);
+    //     rolos.insert(rolos.begin(), 1, P);
+    //     // cout << "P: " << P << endl;
+    //     // print_Rolos();
     // }
-    // else
+    // else if (P < rolos[rolos.size() - 1])
     // {
     //     rolos.push_back(P);
+    //     // cout << "P: " << P << endl;
+    //     // print_Rolos();
     // }
-
-    if (P > rolos[0])
-    {
-        // printf("p: %d, v[size]: %d, i: %d\n", p, v[size], i);
-        rolos.insert(rolos.begin(), 1, P);
-    }
-    else if (P < rolos[size] && P < rolos[0])
-        rolos.push_back(P);
     else
     {
-        int diff_sup = abs(P - rolos[0]);
-        int diff_inf = abs(P - rolos[size]);
-        if (diff_sup < rolos[size])
-            rolos.insert(rolos.begin(), 1, P);
-        else
+        vector<int> old_rolos = rolos;
+        int lds_old = lds();
+
+        vector<int> begin_rolos = rolos;
+        begin_rolos.insert(begin_rolos.begin(), 1, P);
+        int lds_begin = lds();
+
+        vector<int> end_rolos = rolos;
+        end_rolos.push_back(P);
+        int lds_end = lds();
+
+        if (lds_old > lds_begin && lds_old > lds_end)
+        {
+            // rolos.insert(rolos.begin(), 1, P);
             rolos.push_back(P);
+            //     rolos = old_rolos;
+        }
+        else if (lds_begin > lds_old && lds_begin > lds_end)
+        {
+            // rolos = begin_rolos;
+
+            rolos.insert(rolos.begin(), 1, P);
+        }
+        else if (lds_end > lds_old && lds_end > lds_begin)
+        {
+            // rolos = end_rolos;
+            rolos.push_back(P);
+        }
+        else
+        {
+            // rolos = old_rolos;
+            rolos.push_back(P);
+        }
+
+        int diff_sup = abs(P - rolos[0]);
+        int diff_inf = abs(P - rolos[rolos.size()]);
+
+        // cout << "diff_sup " << diff_sup << endl;
+        // cout << "diff_inf " << diff_inf << endl;
+        // cout << "P: " << P << endl;
+
+        if (diff_sup < rolos[rolos.size() - 1])
+        {
+            // cout << "diff_sup " << diff_sup << endl;
+            // cout << "rolos[rolos.size() - 1] " << rolos[rolos.size() - 1] << endl;
+            rolos.insert(rolos.begin(), 1, P);
+            // cout << "P: " << P << endl;
+            // print_Rolos();
+            // cout << "inicio" << endl;
+        }
+        else if (diff_inf < rolos[0])
+        {
+            // cout << "diff_inf " << diff_inf << endl;
+            // cout << "rolos[0] " << rolos[0] << endl;
+            rolos.push_back(P);
+            // cout << "P: " << P << endl;
+            // print_Rolos();
+            // cout << "fim" << endl;
+        }
+
+        // // rolos.push_back(P);
+        // // rolos.insert(rolos.begin(), 1, P);
+        // cout << endl;
     }
-    // rolos.push_back(P);
 }
 
 void Loja::print_Rolos()
@@ -66,21 +103,7 @@ void Loja::print_Rolos()
     {
         std::cout << rolos[i] << " ";
     }
-}
-
-void Loja::print_N(int N)
-{
-    cout << "N: " << N << endl;
-}
-
-void Loja::print_P(int P)
-{
-    std::cout << "P: " << P << std::endl;
-}
-
-void Loja::print_R(int R)
-{
-    std::cout << "R: " << R << std::endl;
+    cout << endl;
 }
 
 void Loja::lis()
@@ -115,7 +138,7 @@ void Loja::lis()
 }
 
 // longest decreasing subsequence adding in the beginning of the vector
-void Loja::lds()
+int Loja::lds()
 {
     int n = rolos.size();
     int lds[n];
@@ -155,7 +178,7 @@ void Loja::lds()
         }
     }
 
-    cout << maior;
+    return maior;
 }
 /*
 int Loja::test(int n)
@@ -231,17 +254,17 @@ int Loja::test2(int n)
         }
 
     // print lds array
-    cout << "lds: " << endl;
-    for (int i = 0; i < n; i++)
-    {
-        cout << lds[i] << " ";
-    }
-    cout << endl;
-    cout << "lis: " << endl;
-    for (int i = 0; i < n; i++)
-    {
-        cout << lis[i] << " ";
-    }
+    // cout << "lds: " << endl;
+    // for (int i = 0; i < n; i++)
+    // {
+    //     cout << lds[i] << " ";
+    // }
+    // cout << endl;
+    // cout << "lis: " << endl;
+    // for (int i = 0; i < n; i++)
+    // {
+    //     cout << lis[i] << " ";
+    // }
 
     return max;
 }
@@ -279,6 +302,22 @@ int Loja::test(int n)
             y++;
         }
     }
+
+    // pritn front and back arrays
+    // cout << "front: " << endl;
+    // for (int i = 0; i < n; i++)
+    // {
+    //     cout << front[i] << " ";
+    // }
+    // cout << endl;
+    // cout << "back: " << endl;
+    // for (int i = 0; i < n; i++)
+    // {
+    //     cout << back[i] << " ";
+    // }
+    // cout << endl;
+
+    // cout << "front: " << front[n - 1] << " back: " << back[n - 1] << endl;
 
     // Return the maximum of front[n-1] and back[n-1]
     return std::max(front[n - 1], back[n - 1]);

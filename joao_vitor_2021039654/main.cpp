@@ -36,9 +36,10 @@ int main()
 
     // minha_loja.print_Rolos();
 
-    // cout << endl;
+    // cout << "lds ";
 
-    // minha_loja.lds();
+    int resp = minha_loja.lds();
+    cout << resp << endl;
     // minha_loja.test(R);
 
     // multiplique o array de rolos por -1
@@ -46,13 +47,17 @@ int main()
     // {
     //   minha_loja.rolos[i] = minha_loja.rolos[i] * -1;
     // }
-    int resposta = minha_loja.test(R);
+    /*    int resposta = minha_loja.test(R);
 
-    cout << resposta << endl;
+    cout << resposta << endl;*/
+
+    // int resposta2 = minha_loja.test2(R);
+    // cout << "resposta2 " << resposta << endl;
 
     // cout << minha_loja.test2(R) << endl;
     // cout << "alg 2 " << minha_loja.test2(R) << endl;
 
+    // cout << endl;
     minha_loja.rolos.clear();
   }
   // cout << endl;
