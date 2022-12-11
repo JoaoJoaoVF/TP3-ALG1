@@ -9,15 +9,14 @@
 #include <cmath>
 using namespace std;
 
-// create a class loja
 class Loja
 {
 public:
     int N, R, P;
     vector<int> rolos;
 
-    Loja();
+    Loja(); // Construtor da classe
 
-    void set_Rolos(int P); // Insere os rolos no vector de rolos
-    int lds();             // Longest Decreasing Subsequence
+    void set_Rolos(int P);              // Insere os rolos no vector de rolos
+    int LongestDecreasingSubsequence(); // Algoritimo Longest Decreasing Subsequence
 };

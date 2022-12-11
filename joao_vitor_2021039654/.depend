@@ -1,2 +1,0 @@
-main.o: main.cpp loja.hpp msgassert.hpp
-loja.o: loja.cpp loja.hpp

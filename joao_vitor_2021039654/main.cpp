@@ -3,8 +3,18 @@
 using namespace std;
 
 int main()
+/*
+    O algoritmo realiza 8 passos:
+    1. Leitura da quantidade de casos de teste
+    2. Leitura da quantidade de rolos
+    3. Leitura do valor do i-ésimo rolo
+    4. Insere o valor do i-ésimo rolo no vetor de rolos
+    5. Chama a função LongestDecreasingSubsequence
+    7. Imprime o resultado
+    8. Limpa o vetor de rolos
+*/
 {
-  Loja minha_loja;
+  Loja FP_Tecidinhos;
   /*
     N-> Quantidade de casos de teste
     R-> Quantidade de rolos
@@ -12,7 +22,6 @@ int main()
   */
   int N, R, P;
 
-  /*Leitura da quantiade de casos de teste*/
   cin >> N;
 
   erroAssert(N >= 1, "É necessário pelo menos um caso de teste");
@@ -21,7 +30,6 @@ int main()
   for (int i = 0; i < N; i++)
   {
 
-    /*Leitura do numero de rolos*/
     cin >> R;
     erroAssert(R >= 1, "É necessário pelo menos um rolo");
     erroAssert(R <= 20000, "A quantidade de rolos não pode ser maior que 20000");
@@ -30,19 +38,17 @@ int main()
     {
       cin >> P;
 
-      minha_loja.set_Rolos(P);
+      erroAssert(P >= 1, "O valor do rolo não pode ser menor que 1");
+      erroAssert(P <= 1000000, "O valor do rolo não pode ser maior que 1000000");
+
+      FP_Tecidinhos.set_Rolos(P);
     }
 
-    // multiplicar todos os elemntos do vetor por -1
-    for (int i = 0; i < minha_loja.rolos.size(); i++)
-    {
-      minha_loja.rolos[i] = minha_loja.rolos[i] * -1;
-    }
+    int resposta = FP_Tecidinhos.LongestDecreasingSubsequence();
 
-    int resp = minha_loja.lds();
-    cout << resp << endl;
+    cout << resposta << endl;
 
-    minha_loja.rolos.clear();
+    FP_Tecidinhos.rolos.clear();
   }
 
   return (0);
